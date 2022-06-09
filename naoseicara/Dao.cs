@@ -43,5 +43,21 @@ namespace naoseicara
             cmd.Parameters.AddWithValue("@senha", p.Senha);
             cmd.ExecuteNonQuery();
         }
+
+        public void deleteUsuario(Pessoa p)
+        {
+            String sql = "delete from login where id = @id";
+            MySqlCommand cmd = new MySqlCommand(sql, conexao);
+            cmd.Parameters.AddWithValue("@id", p.Id);
+            cmd.ExecuteNonQuery();
+        }
+
+        public MySqlDataReader listaUsuario()
+        {
+            string sql = "select * from login";
+            MySqlCommand cmd = new MySqlCommand(sql, conexao);
+            rdr = cmd.ExecuteReader();
+            return rdr;
+        }
     }
 }
