@@ -34,5 +34,14 @@ namespace naoseicara
             rdr.Read();
             return rdr.HasRows;
         }
+
+        public void insertUsuario(Pessoa p)
+        {
+            String sql = "insert into login (id,usuario,senha) values (null,@usuario,@senha)";
+            MySqlCommand cmd = new MySqlCommand(sql, conexao);
+            cmd.Parameters.AddWithValue("@usuario", p.Usuario);
+            cmd.Parameters.AddWithValue("@senha", p.Senha);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
